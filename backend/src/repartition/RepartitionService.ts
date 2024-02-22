@@ -1,8 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { Atelier } from 'src/entities/atelier.entity';
 import { Candidat } from 'src/entities/candidat.entity';
+import { Affectation } from 'src/entities/affectation.entity';
+import { Label } from 'src/entities/label.entity';
+import { Preference } from 'src/entities/preference.entity';
+import { Allergie } from 'src/entities/allergie.entity';
+import { Caracteristique } from 'src/entities/carateristique.entity';
 
 @Injectable()
 export class RepartitionService {
@@ -10,7 +15,15 @@ export class RepartitionService {
     @InjectRepository(Atelier)
     private atelierRepository: Repository<Atelier>,
     @InjectRepository(Candidat)
-    private candidatRepository: Repository<Candidat>
+    private candidatRepository: Repository<Candidat>,
+    @InjectRepository(Affectation)
+    private affectationRepository: Repository<Affectation>,
+    @InjectRepository(Caracteristique)
+    private workshopLabelRepository: Repository<Caracteristique>,
+    @InjectRepository(Preference)
+    private preferenceRepository: Repository<Preference>,
+    @InjectRepository(Allergie)
+    private allergieRepository: Repository<Allergie>,
   ) {}
 
   async repartirCandidats(): Promise<void> {
@@ -21,21 +34,21 @@ export class RepartitionService {
     candidats.forEach(async (candidat) => {
       let bestMatch = null;
       let highestCompatibilityScore = 0;
-
-      ateliers.forEach((atelier) => {
-        if (this.isWorkshopSafeForCandidate(atelier, candidat)) {
-          const compatibilityScore = this.calculateCompatibilityScore(atelier, candidat);
-  
+    
+      for(let i = 0; i < ateliers.length; i++){
+        if (this.isWorkshopSafeForCandidate(ateliers[i], candidat)) {
+          const compatibilityScore = await this.calculateCompatibilityScore(ateliers[i], candidat);
+          
           if (compatibilityScore > highestCompatibilityScore) {
             highestCompatibilityScore = compatibilityScore;
-            bestMatch = atelier;
+            bestMatch = ateliers[i];
           }
         }
-      });
+      }
 
       if (bestMatch) {
-        candidat.atelier = bestMatch;
-        await this.candidatRepository.save(candidat);
+        // On affecte le candidat à l'atelier
+        await this.affectationRepository.save({ idAtelier: bestMatch.id, idCandidat: candidat.id });
       }
     });
   }
@@ -46,8 +59,10 @@ export class RepartitionService {
    * @param candidate 
    * @returns 
    */
-  calculateCompatibilityScore(workshop, candidate): number {
-    return workshop.labels.filter(label => candidate.preferences.includes(label)).length;
+  async calculateCompatibilityScore(workshop, candidate): Promise<number> {
+    const workshopLabels = await this.workshopLabelRepository.find({ where: { idAtelier: workshop.id } });
+    const candidatePreferences = await this.preferenceRepository.find({ where: { idCandidat: candidate.id } });
+    return workshopLabels.filter(label => candidatePreferences.some(preference => preference.idLabel === label.idLabel)).length;
   }
   
   /**
@@ -56,7 +71,9 @@ export class RepartitionService {
    * @param candidate 
    * @returns 
    */
-  isWorkshopSafeForCandidate(workshop, candidate): boolean {
-    return !workshop.labels.some(label => candidate.allergies.includes(label));
+  async isWorkshopSafeForCandidate(workshop, candidate): Promise<boolean> {
+    const workshopLabels = await this.workshopLabelRepository.find({ where: { idAtelier: workshop.id } });
+    const candidateAllergies = await this.allergieRepository.find({ where: { idCandidat: candidate.id } });
+    return !workshopLabels.some(label => candidateAllergies.some(allergie => allergie.idLabel === label.idLabel));
   }
 }

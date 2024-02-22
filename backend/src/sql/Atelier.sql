@@ -1,10 +1,7 @@
-CREATE TABLE Atelier
-(
-    id INT PRIMARY KEY,
-    nom VARCHAR(255),
-    description TEXT,
-    capacite INT,
-    image VARCHAR(255),
-
-    FOREIGN KEY (theme) REFERENCES Theme (id)
-);
+CREATE TABLE IF NOT EXISTS 'atelier' (
+  'id' INT AUTO_INCREMENT PRIMARY KEY,
+  'nom' VARCHAR(255) NOT NULL,
+  'description' TEXT,
+  'capacite' INT NOT NULL,
+  'image' VARCHAR(255)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

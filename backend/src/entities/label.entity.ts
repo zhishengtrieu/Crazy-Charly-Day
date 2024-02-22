@@ -7,5 +7,4 @@ export class Label {
 
   @Column()
   name: string;
-
 }

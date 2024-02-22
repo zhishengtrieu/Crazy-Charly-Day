@@ -13,15 +13,9 @@ export class Atelier {
   @Column('text')
   description: string;
 
-  @Column("simple-array")
-  labels: Label[];
-
   @Column()
   capacite: number;
 
   @Column()
   image: string;
-
-  @OneToMany(() => Candidat, candidat => candidat.atelier)
-  participants: Candidat[];
 }
