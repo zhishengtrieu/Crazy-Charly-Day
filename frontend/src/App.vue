@@ -29,7 +29,7 @@ header {
   justify-content: center;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 
-  img {
+  #logo {
     position: absolute;
     left: 0;
     height: inherit;
