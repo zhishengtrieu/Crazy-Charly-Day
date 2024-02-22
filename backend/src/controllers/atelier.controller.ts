@@ -12,10 +12,10 @@ export class AteliersController {
         return this.service.getAtelier(params.id);
     }
 
-    @Post()
-    create(@Body() atelier: Atelier) {
-        return this.service.createAtelier(atelier);
-    }
+    // @Post()
+    // create(@Body() atelier: Atelier) {
+    //     return this.service.createAtelier(atelier);
+    // }
 
     @Put()
     update(@Body() Atelier: Atelier) {
