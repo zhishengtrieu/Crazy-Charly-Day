@@ -14,7 +14,7 @@
   </main>
 
   <footer>
-
+    <p>La boîte à cuisine© 2021</p>
   </footer>
 </template>
 
@@ -48,9 +48,16 @@ main {
 }
 
 footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   line-height: 1.5;
   height: 80px;
   background-color: white;
   box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.26);
+
+  p {
+    margin: 0;
+  }
 }
 </style>
