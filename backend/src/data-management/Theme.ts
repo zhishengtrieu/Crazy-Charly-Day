@@ -1,10 +1,10 @@
 class Theme {
     private code: string;
-    private name: string;
+    private nom: string;
 
     constructor(code: string, name: string) {
         this.code = code;
-        this.name = name;
+        this.nom = name;
     }
 
     public static IT = new Theme("IT", "Cuisine italienne");
