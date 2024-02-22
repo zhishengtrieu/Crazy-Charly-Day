@@ -14,7 +14,7 @@ export class AtelierService {
 
     async getAtelier(_id: number): Promise<Atelier[]> {
         return await this.ateliersRepository.find({
-            select: ["id", "nom", "description", "labels", "capacite", "image", "participants"],
+            select: ["id", "nom", "description", , "capacite", "image"],
             where: [{ "id": _id }]
         });
     }

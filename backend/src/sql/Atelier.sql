@@ -1,7 +1,7 @@
-CREATE TABLE IF NOT EXISTS 'atelier' (
-  'id' INT AUTO_INCREMENT PRIMARY KEY,
-  'nom' VARCHAR(255) NOT NULL,
-  'description' TEXT,
-  'capacite' INT NOT NULL,
-  'image' VARCHAR(255)
+CREATE TABLE IF NOT EXISTS atelier (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(255) NOT NULL,
+  description TEXT,
+  capacite INT NOT NULL,
+  image VARCHAR(255)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

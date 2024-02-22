@@ -1,10 +1,11 @@
-import { Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, PrimaryColumn } from 'typeorm';
+
 
 @Entity()
 export class Caracteristique {
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     idLabel: number;
 
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     idAtelier: number;
 }

@@ -13,8 +13,12 @@ export class AppController {
   /**
    * Liste les candidats en attente
    */
-  @Get('/candidat/read')
-  listeCandidats() {
+  @Get('/candidats')
+  async listeCandidats() {
+    const candidats = await this.appService.listeCandidats();
+    for (const candidat of candidats) {
+      console.log(candidat);
+    }
     return this.appService.listeCandidats();
   }
   
@@ -51,7 +55,8 @@ export class AppController {
     return this.appService.ajouterLabel();
   }
 
-  @Get('/label/read')
+  //liste les labels
+  @Get('/labels')
   listeLabels()  {
     return this.appService.listeLabels();
   }
@@ -71,7 +76,8 @@ export class AppController {
     return this.appService.ajouterAtelier();
   }
 
-  @Get('/atelier/read')
+  // Liste les ateliers
+  @Get('/ateliers')
   getAteliers() {
     return this.appService.getAteliers();
   }

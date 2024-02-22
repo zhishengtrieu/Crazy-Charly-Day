@@ -1,10 +1,10 @@
-import { Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class Allergie {
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     idLabel: number;
 
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     idCandidat: number;
 }

@@ -1,10 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Atelier } from 'src/entities/atelier.entity';
 import { Candidat } from 'src/entities/candidat.entity';
 import { Affectation } from 'src/entities/affectation.entity';
-import { Label } from 'src/entities/label.entity';
 import { Preference } from 'src/entities/preference.entity';
 import { Allergie } from 'src/entities/allergie.entity';
 import { Caracteristique } from 'src/entities/carateristique.entity';

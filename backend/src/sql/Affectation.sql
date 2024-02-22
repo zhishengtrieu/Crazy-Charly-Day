@@ -1,7 +1,8 @@
-CREATE TABLE IF NOT EXISTS 'affectation'
+CREATE TABLE IF NOT EXISTS affectation
 (
-    'idCandidat' INT PRIMARY KEY,
-    'idAtelier' INT PRIMARY KEY,
-    FOREIGN KEY ('idCandidat') REFERENCES 'candidat'('id'),
-    FOREIGN KEY ('idAtelier') REFERENCES 'atelier'('id')
+    idCandidat INT,
+    idAtelier INT,
+    PRIMARY KEY (idCandidat, idAtelier),
+    FOREIGN KEY (idCandidat) REFERENCES candidat(id),
+    FOREIGN KEY (idAtelier) REFERENCES atelier(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

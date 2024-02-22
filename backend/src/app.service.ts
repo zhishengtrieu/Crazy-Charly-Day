@@ -1,14 +1,21 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Candidat } from './entities/candidat.entity';
 
 @Injectable()
 export class AppService {
+  constructor(
+    @InjectRepository(Candidat)
+    private candidatRepository: Repository<Candidat>,
+  ) {}
 
   candidater() {
     throw new Error('Method not implemented.');
   }
 
-  listeCandidats() {
-    throw new Error('Method not implemented.');
+  async listeCandidats(): Promise<Candidat[]> {
+    return this.candidatRepository.find(); 
   }
 
   repartirCandidats() {

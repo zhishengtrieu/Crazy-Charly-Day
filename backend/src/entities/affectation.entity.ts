@@ -1,10 +1,12 @@
-import { Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, PrimaryColumn } from 'typeorm';
+import { Candidat } from './candidat.entity';
+import { Label } from './label.entity';
 
 @Entity()
 export class Affectation {
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     idAtelier: number;
 
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     idCandidat: number;
 }
