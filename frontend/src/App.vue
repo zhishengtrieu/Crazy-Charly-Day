@@ -29,7 +29,7 @@ header {
   position: relative;
   background-color: white;
   line-height: 1.5;
-  height: 150px;
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,6 +64,7 @@ nav a {
 /* Main Content */
 main {
   padding: 20px;
+  color: white;
 }
 
 footer {
