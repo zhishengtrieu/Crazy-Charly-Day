@@ -1,4 +1,4 @@
-TABLE Candidat
+CREATE TABLE Candidat
 (
     id INT PRIMARY KEY,
     prenom VARCHAR(255),

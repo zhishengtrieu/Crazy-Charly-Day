@@ -1,4 +1,4 @@
-TABLE Atelier
+CREATE TABLE Atelier
 (
     id INT PRIMARY KEY,
     theme INT,
