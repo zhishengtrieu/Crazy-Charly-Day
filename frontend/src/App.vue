@@ -16,9 +16,10 @@
   </main>
 
   <footer>
-    <p>La boîte à cuisine © 2024</p>
-    <img alt="Instagram logo" src="./assets/logo_insta.png" id="logo_insta">
-
+    <p>2024 - La boîte à cuisine © </p>
+    <a href="https://www.instagram.com/laboiteacuisine.aars/" target="_blank">
+      <img alt="Instagram logo" src="./assets/logo_insta.png" id="logo_insta">
+    </a>
   </footer>
 </template>
 
@@ -70,17 +71,19 @@ footer {
   align-items: center;
   justify-content: center;
   line-height: 1.5;
-  height: 80px;
+  height: 150px;
   background-color: white;
   box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 
 footer p {
-  margin: 0;
+  font-weight: bold;
+  font-size: 1.3em;
+  margin: 0 10px 0 0;
 }
 
 #logo_insta {
-  width: 30px; /* Ajustez la taille du logo selon vos besoins */
+  width: 50px; /* Ajustez la taille du logo selon vos besoins */
   margin-right: 10px; /* Ajoute une marge à droite du logo pour l'espacement */
 }
 </style>
