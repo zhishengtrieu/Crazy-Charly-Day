@@ -36,6 +36,9 @@ export default {
         </div>
         <div class="card-body">
           <img :src="atelier.image" class="card-img-top" alt="Image de l'atelier">
+          <p><span v-for="tag in atelier.tags" :key="tag.Tag_id.id" class="mx-2 badge tag">#{{
+              tag.Tag_id.libelle
+            }}</span></p>
           <div class="card-details">
             <p class="card-description">{{ atelier.description }}</p>
             <p class="card-capacity">Places disponibles : {{ atelier.places }}</p>
@@ -75,6 +78,12 @@ export default {
 
 .card-body {
   padding: 20px;
+}
+
+.tag {
+  margin-top: 2em;
+  background-color: #A53480;
+  font-size: 1em;
 }
 
 .card-img-top {

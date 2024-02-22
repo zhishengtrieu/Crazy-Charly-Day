@@ -6,99 +6,35 @@ export default {
   data() {
     return {
       atelier: {
-        "theme": 1,
-        "places": 1
+        "name": "",
+        "places": 1,
+        "description": "",
+        "image": ""
       },
-      listeThemes: [
-        {
-          "code": "IT",
-          "libelle": "Cuisine italienne"
-        },
-        {
-          "code": "FR",
-          "libelle": "Cuisine française"
-        },
-        {
-          "code": "MEX",
-          "libelle": "Cuisine Amérique du Sud"
-        },
-        {
-          "code": "JP",
-          "libelle": "Cuisine japonaise"
-        },
-        {
-          "code": "GR",
-          "libelle": "Cuisine grecque"
-        },
-        {
-          "code": "OR",
-          "libelle": "Cuisine orientale"
-        }
-      ],
-      listeAteliers: [
-        {
-          "id": 1,
-          "theme": {
-            "id": 1,
-            "code": "FR",
-          },
-          "capacite": 20,
-          "atelier": {
-            "code": "FR",
-            "libelle": "Atelier 1"
-          }
-        },
-        {
-          "id": 2,
-          "theme": {
-            "id": 2,
-            "code": "IT",
-          },
-          "capacite": 20,
-          "atelier": {
-            "code": "FR",
-            "libelle": "Atelier Italienne"
-          }
-        },
-        {
-          "id": 3,
-          "theme": {
-            "id": 3,
-            "code": "JP",
-          },
-          "capacite": 20,
-          "atelier": {
-            "code": "JP",
-            "libelle": "Cuisine japonnaise"
-          }
-        },
-      ]
+      listeThemes: null,
+      selectedThemes: []
     }
   },
   methods: {
     fetchThemes() {
-      axios.get('api')
+      axios.get('http://docketu.iutnc.univ-lorraine.fr:61501/items/Tag')
           .then(response => {
-            console.log(response.data)
-            // this.listeThemes = response.data.themes
-          })
-          .catch(error => {
-            console.error(error)
-          })
-    },
-    fetchAteliers() {
-      axios.get('api')
-          .then(response => {
-            console.log(response.data)
-            // this.atelier = response.data.atelier
+            this.listeThemes = response.data.data
+            console.log(this.listeThemes)
           })
           .catch(error => {
             console.error(error)
           })
     },
     submit() {
-      console.log(this.atelier)
-      axios.post('api', this.atelier)
+      console.log(this.selectedThemes)
+      axios.post('http://docketu.iutnc.univ-lorraine.fr:61501/items/Atelier', {
+        "nom" : this.atelier.name,
+        "description": this.atelier.description,
+        "places": this.atelier.places,
+        "tags": this.selectedThemes,
+        "image": this.atelier.image
+      })
           .then(response => {
             console.log(response.data)
             this.$router.push('/admin/ateliers')
@@ -111,7 +47,6 @@ export default {
   ,
   created() {
     this.fetchThemes()
-    this.fetchAteliers()
   }
   ,
 }
@@ -122,10 +57,18 @@ export default {
     <h1>Nouvel atelier</h1>
     <form>
       <div class="mb-3">
-        <label for="tags" class="form-label">Tags</label>
-        <select v-model="atelier.theme" class="form-select" id="tags">
-          <option v-for="theme in listeThemes" :value="theme.code">{{ theme.libelle }}</option>
-        </select>
+        <label for="name" class="form-label">Nom de l'atelier</label>
+        <input v-model="atelier.name" type="text" class="form-control" id="name">
+        <label for="description" class="form-label">Description de l'atelier</label>
+        <input v-model="atelier.description" type="text" class="form-control" id="description">
+        <label for="image" class="form-label">Image de l'atelier</label>
+        <input v-model="atelier.image" type="text" class="form-control" id="image">
+        <label class="form-label">Sélectionnez les tags de l'atelier</label>
+        <div>
+          <label v-for="theme in listeThemes" :key="theme.id">
+            <input type="checkbox" v-model="selectedThemes" :value="theme.id"> {{ theme.libelle }}
+          </label>
+        </div>
       </div>
       <div class="mb-3">
         <label for="places" class="form-label">Nombre de places</label>
@@ -138,3 +81,13 @@ export default {
     </form>
   </div>
 </template>
+
+<style scoped lang="scss">
+
+  label {
+    padding-top: 0.5em;
+    padding-right: 1em;
+  }
+
+</style>
+

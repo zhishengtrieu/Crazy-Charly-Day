@@ -41,11 +41,15 @@ export default {
           {{ atelier.nom }}
         </div>
         <div class="card-body">
+          <img :src="atelier.image" class="card-img-top" alt="...">
+          <p><span v-for="tag in atelier.tags" :key="tag.Tag_id.id" class="mx-2 badge tag">#{{
+              tag.Tag_id.libelle
+            }}</span></p>
           <p class="card-text">{{ atelier.description }}</p>
           <p class="card-text">{{ atelier.places }} places</p>
         </div>
         <RouterLink :to="'/admin/ateliers/' + atelier.id">
-          <button class="btn btn-primary">Modifier</button>
+          <button class="btn btn-modifier">Modifier</button>
         </RouterLink>
       </div>
     </div>
@@ -66,10 +70,21 @@ export default {
 
   .card-header {
     font-size: 1.5em;
+    background-color: #59e08c;
   }
 
   .card-text {
     font-size: 1.2em;
+  }
+
+  .tag {
+    margin-top: 2em;
+    background-color: #A53480;
+    font-size: 1em;
+  }
+
+  .btn-modifier{
+    background-color: #59e08c;
   }
 
   .btn {
