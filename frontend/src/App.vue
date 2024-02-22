@@ -16,7 +16,7 @@
   </main>
 
   <footer>
-    <p>La boîte à cuisine© 2021</p>
+    <p>La boîte à cuisine © 2024</p>
   </footer>
 </template>
 
@@ -33,7 +33,7 @@ header {
 
   #logo {
     position: absolute;
-    left: 0;
+    left: 10px;
     height: inherit;
     margin-right: 2em;
   }
