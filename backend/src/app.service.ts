@@ -3,21 +3,27 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class AppService {
 
-  //Pour l'user
-  candidaterAtelier() {
-    throw new Error('Method not implemented.');
-  }
-
-  //Pour l'admin
-  getAteliers() {
+  candidater() {
     throw new Error('Method not implemented.');
   }
 
   listeCandidats() {
     throw new Error('Method not implemented.');
   }
-  
-  candidater() {
+
+  repartirCandidats() {
+    throw new Error('Method not implemented.');
+  }
+
+  annulerRepartition(){
+    throw new Error('Method not implemented.');
+  }
+
+  supprimerCandidat() {
+    throw new Error('Method not implemented.');
+  }
+
+  getAteliers() {
     throw new Error('Method not implemented.');
   }
 
@@ -33,7 +39,6 @@ export class AppService {
     throw new Error('Method not implemented.');
   }
 
-  
   listeLabels() {
     throw new Error('Method not implemented.');
   }
@@ -47,18 +52,6 @@ export class AppService {
   }
 
   supprimerLabel() {
-    throw new Error('Method not implemented.');
-  }
-
-  repartirCandidats() {
-    throw new Error('Method not implemented.');
-  }
-
-  annulerRepartition(){
-    throw new Error('Method not implemented.');
-  }
-
-  supprimerCandidat() {
     throw new Error('Method not implemented.');
   }
 }
