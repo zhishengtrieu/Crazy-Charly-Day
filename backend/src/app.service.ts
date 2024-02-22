@@ -33,11 +33,11 @@ export class AppService {
     throw new Error('Method not implemented.');
   }
 
+  /*
   listeLabels() {
     throw new Error('Method not implemented.');
   }
 
-  /*
   ajouterLabel() {
     throw new Error('Method not implemented.');
   }
