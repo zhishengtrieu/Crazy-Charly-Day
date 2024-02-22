@@ -2,12 +2,15 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Candidat } from './entities/candidat.entity';
+import { Atelier } from './entities/atelier.entity';
 
 @Injectable()
 export class AppService {
   constructor(
     @InjectRepository(Candidat)
     private candidatRepository: Repository<Candidat>,
+    @InjectRepository(Atelier)
+    private atelierRepository: Repository<Atelier>,
   ) {}
 
   candidater() {
@@ -31,7 +34,7 @@ export class AppService {
   }
 
   getAteliers() {
-    throw new Error('Method not implemented.');
+    return this.atelierRepository.find();
   }
 
   ajouterAtelier() {
