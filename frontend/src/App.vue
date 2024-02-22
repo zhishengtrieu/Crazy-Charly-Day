@@ -5,7 +5,9 @@
   <header>
     <img alt="Vue logo" src="./assets/logo_boite_a_cuisine.png" id="logo">
     <nav>
-      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/">Accueil</RouterLink>
+      <RouterLink to="/ateliers">Ateliers</RouterLink>
+
     </nav>
   </header>
 
