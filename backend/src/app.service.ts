@@ -33,7 +33,7 @@ export class AppService {
     throw new Error('Method not implemented.');
   }
 
-  /*
+  
   listeLabels() {
     throw new Error('Method not implemented.');
   }
@@ -48,13 +48,13 @@ export class AppService {
 
   supprimerLabel() {
     throw new Error('Method not implemented.');
-  }*/
+  }
 
   repartirCandidats() {
     throw new Error('Method not implemented.');
   }
 
-  anulerRepartition(){
+  annulerRepartition(){
     throw new Error('Method not implemented.');
   }
 

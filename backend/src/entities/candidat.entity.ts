@@ -10,9 +10,19 @@ export class Candidat {
   @Column()
   nom: string;
 
+  @Column()
+  email: string;
+
+  @Column()
+  enAttente: boolean;
+
   @Column("simple-array")
   preferences: Label[];
 
   @ManyToOne(() => Atelier, atelier => atelier.participants)
   atelier: Atelier;
+
+  @Column("simple-array")
+  allergies: Label[];
+  
 }
