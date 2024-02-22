@@ -122,8 +122,8 @@ export default {
     <h1>Nouvel atelier</h1>
     <form>
       <div class="mb-3">
-        <label for="theme" class="form-label">Thème</label>
-        <select v-model="atelier.theme" class="form-select" id="theme">
+        <label for="tags" class="form-label">Tags</label>
+        <select v-model="atelier.theme" class="form-select" id="tags">
           <option v-for="theme in listeThemes" :value="theme.code">{{ theme.libelle }}</option>
         </select>
       </div>
