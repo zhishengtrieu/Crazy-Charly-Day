@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Candidat } from './candidat.entity';
+import { Label } from './label.entity';
 
 @Entity()
 export class Atelier {
@@ -13,7 +14,7 @@ export class Atelier {
   description: string;
 
   @Column("simple-array")
-  labels: string[];
+  labels: Label[];
 
   @Column()
   capacite: number;

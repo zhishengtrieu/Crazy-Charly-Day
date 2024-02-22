@@ -19,21 +19,44 @@ export class RepartitionService {
 
     // Logique de répartition
     candidats.forEach(async (candidat) => {
-      let atelierAssigne = null;
-      let maxMatchingLabels = 0;
+      let bestMatch = null;
+      let highestCompatibilityScore = 0;
 
       ateliers.forEach((atelier) => {
-        const matchingLabels = atelier.labels.filter(label => candidat.preferences.includes(label)).length;
-        if (matchingLabels > maxMatchingLabels) {
-          maxMatchingLabels = matchingLabels;
-          atelierAssigne = atelier;
+        if (this.isWorkshopSafeForCandidate(atelier, candidat)) {
+          const compatibilityScore = this.calculateCompatibilityScore(atelier, candidat);
+  
+          if (compatibilityScore > highestCompatibilityScore) {
+            highestCompatibilityScore = compatibilityScore;
+            bestMatch = atelier;
+          }
         }
       });
 
-      if (atelierAssigne) {
-        candidat.atelier = atelierAssigne;
+      if (bestMatch) {
+        candidat.atelier = bestMatch;
         await this.candidatRepository.save(candidat);
       }
     });
+  }
+
+  /**
+   * Le score de compatibilité est le nombre de préférences communes entre l'atelier et le candidat.
+   * @param workshop 
+   * @param candidate 
+   * @returns 
+   */
+  calculateCompatibilityScore(workshop, candidate): number {
+    return workshop.labels.filter(label => candidate.preferences.includes(label)).length;
+  }
+  
+  /**
+   * On vérifie que l'atelier ne contient pas de labels auxquels le candidat est allergique.
+   * @param workshop 
+   * @param candidate 
+   * @returns 
+   */
+  isWorkshopSafeForCandidate(workshop, candidate): boolean {
+    return !workshop.labels.some(label => candidate.allergies.includes(label));
   }
 }

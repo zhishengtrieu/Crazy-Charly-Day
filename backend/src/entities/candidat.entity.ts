@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { Atelier } from './atelier.entity';
+import { Label } from './label.entity';
 
 @Entity()
 export class Candidat {
@@ -10,7 +11,7 @@ export class Candidat {
   nom: string;
 
   @Column("simple-array")
-  preferences: string[];
+  preferences: Label[];
 
   @ManyToOne(() => Atelier, atelier => atelier.participants)
   atelier: Atelier;
