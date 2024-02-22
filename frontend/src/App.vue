@@ -7,6 +7,7 @@
     <nav>
       <RouterLink to="/">Accueil</RouterLink>
       <RouterLink to="/ateliers">Ateliers</RouterLink>
+      <RouterLink to="/questionnaire">Questionnaire</RouterLink>
 
     </nav>
   </header>

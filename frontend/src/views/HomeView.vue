@@ -6,10 +6,10 @@
     <h1 class="slogan">BIEN MANGER <br> <span class="green-text">POUR LA PLANETE</span></h1>
     <div class="un">
       <img alt="Vue logo" src="../assets/cuisines.jpg" id="logo">
-      <p>La boîte à cuisine est ..</p>
+      <p>La Boîte à Cuisine est un lieu participatif d’ateliers culinaires solidaires entièrement gratuits destiné aux personnes isolées et touchées par les précarités alimentaires et/ou sociales. Elle accueille les habitants sensibles aux valeurs de partage et d’équité, sans distinction de revenus, ni d’âge afin de favoriser la mixité sociale.</p>
     </div>
     <div class="deux">
-      <p>La boîte à cuisine est ..</p>
+      <p>Véritable moment de partage, nos ateliers culinaires vous invitent à découvrir de nouvelles saveurs, à maîtriser des techniques innovantes et à créer des souvenirs inoubliables avec d’autres passionnés de cuisine. Une expérience enrichissante qui va au-delà de l’apprentissage pour créer des liens authentiques autour de la table.</p>
       <img alt="Vue logo" src="../assets/cuisines.jpg" id="logo">
     </div>
   </div>
@@ -36,6 +36,8 @@
     font-weight: bold;
     font-size: 1.3em;
     padding-left: 5em;
+    padding-right: 5em;
+    text-align: justify;
 
   }
 }
@@ -55,6 +57,8 @@
     font-weight: bold;
     font-size: 1.3em;
     padding-left: 5em;
+    padding-right: 5em;
+    text-align: justify;
   }
 }
 
