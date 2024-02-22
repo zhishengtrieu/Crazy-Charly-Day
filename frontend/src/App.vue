@@ -17,7 +17,7 @@
 
   <footer>
     <p>2024 - La boîte à cuisine © </p>
-    <a href="https://www.instagram.com/laboiteacuisine.aars/" target="_blank">
+    <a href="https://instagram.com/laboiteacuisine.aars/" target="_blank">
       <img alt="Instagram logo" src="./assets/logo_insta.png" id="logo_insta">
     </a>
   </footer>
