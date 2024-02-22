@@ -5,56 +5,20 @@ export default {
   name: 'AdminAteliersComponent',
   data() {
     return {
-      ateliers: [
-        {
-          "id": 1,
-          "theme": {
-            "id": 1,
-            "code": "FR",
-          },
-          "capacite": 20,
-          "atelier": {
-            "code": "FR",
-            "libelle": "Atelier 1"
-          }
-        },
-        {
-          "id": 2,
-          "theme": {
-            "id": 2,
-            "code": "IT",
-          },
-          "capacite": 20,
-          "atelier": {
-            "code": "FR",
-            "libelle": "Atelier Italienne"
-          }
-        },
-        {
-          "id": 3,
-          "theme": {
-            "id": 3,
-            "code": "JP",
-          },
-          "capacite": 20,
-          "atelier": {
-            "code": "JP",
-            "libelle": "Cuisine japonnaise"
-          }
-        },
-      ]
+      loading: true,
+      ateliers: []
     }
   },
   methods: {
     fetchAteliers() {
-      axios.get('api')
+      axios.get('http://docketu.iutnc.univ-lorraine.fr:61501/items/Atelier?fields=*.Tag_id.*')
           .then(response => {
-            console.log(response.data)
-            // this.ateliers = response.data.ateliers
+            this.ateliers = response.data.data
           })
           .catch(error => {
             console.error(error)
           })
+          .finally(() => this.loading = false)
     }
   },
   created() {
@@ -65,15 +29,20 @@ export default {
 
 <template>
   <h1>Liste des Ateliers</h1>
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+  <div v-if="loading" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <div v-else class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
     <div class="col" v-for="atelier in ateliers" :key="atelier.id">
       <div class="card h-100">
         <div class="card-header">
-          {{ atelier.atelier.libelle }}
+          {{ atelier.nom }}
         </div>
         <div class="card-body">
-          <p class="card-text">{{ atelier.theme.code }}</p>
-          <p class="card-text">Capacité : {{ atelier.capacite }}</p>
+          <p class="card-text">{{ atelier.description }}</p>
+          <p class="card-text">{{ atelier.places }} places</p>
         </div>
         <RouterLink :to="'/admin/ateliers/' + atelier.id">
           <button class="btn btn-primary">Modifier</button>
