@@ -1,89 +1,88 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  //Pour l'user
-  @Get('/candidater')
+  @Post('/candidat/create')
   candidaterAtelier() {
     return this.appService.candidater();
   }
 
-  //Pour l'admin
-  @Get('/ateliers')
-  getAteliers() {
-    return this.appService.getAteliers();
-  }
-
-  @Get('/candidats')
+  /**
+   * Liste les candidats en attente
+   */
+  @Get('/candidat/read')
   listeCandidats() {
     return this.appService.listeCandidats();
   }
-
-  /*
-  @Get('/labels')
-  listeLabels()  {
-    return this.appService.listeLabels();
-  }
-
-  @Get('/ajouterLabel')
-  ajouterLabel() {
-    return this.appService.ajouterLabel();
-  }
-
-  @Get('/modifierLabel')
-  modifierLabel() {
-    return this.appService.modifierLabel();
-  }
-
-  @Get('/supprimerLabel')
-  supprimerLabel() {
-    return this.appService.supprimerLabel();
-  }*/
-
-  @Get('/ajouterAtelier')
-  ajouterAtelier() {
-    return this.appService.ajouterAtelier();
-  }
-
-  @Get('/modifierAtelier')
-  modifierAtelier() {
-    return this.appService.modifierAtelier();
-  }
-
-  @Get('/supprimerAtelier')
-  supprimerAtelier() {
-    return this.appService.supprimerAtelier();
+  
+  /**
+   * Supprime un candidat de la liste des candidats en attente
+   * @returns 
+   */
+  @Get('/candidat/delete')
+  supprimerCandidat() {
+    return this.appService.supprimerCandidat();
   }
 
   /**
    * Permet de repartir les candidats en attente dans les ateliers 
    * @returns 
    */
-  @Get('/repartirCandidats')
+  @Get('/candidat/repartition/repartir')
   repartirCandidats() {
     return this.appService.repartirCandidats();
   }
 
   /**
-   * Permet d'anuler la repartition d'un candidat dans un atelier
+   * Permet d'annuler la repartition d'un candidat dans un atelier
    * le ramenne dans la liste des candidats en attente
    * @returns 
    */
-  @Get('/anulerRepartition')
-  anulerRepartition() {
-    return this.appService.anulerRepartition();
+  @Get('/candidat/repartition/annuler')
+  annulerRepartition() {
+    return this.appService.annulerRepartition();
   }
 
-  /**
-   * Supprime un candidat de la liste des candidats en attente
-   * @returns 
-   */
-  @Get('/supprimerCandidat')
-  supprimerCandidat() {
-    return this.appService.supprimerCandidat();
+  @Post('/label/create')
+  ajouterLabel() {
+    return this.appService.ajouterLabel();
   }
 
+  @Get('/label/read')
+  listeLabels()  {
+    return this.appService.listeLabels();
+  }
+
+  @Post('/label/update')
+  modifierLabel() {
+    return this.appService.modifierLabel();
+  }
+
+  @Get('/label/delete')
+  supprimerLabel() {
+    return this.appService.supprimerLabel();
+  }
+
+  @Post('/atelier/create')
+  ajouterAtelier() {
+    return this.appService.ajouterAtelier();
+  }
+
+  @Get('/atelier/read')
+  getAteliers() {
+    return this.appService.getAteliers();
+  }
+
+  @Post('/atelier/update')
+  modifierAtelier() {
+    return this.appService.modifierAtelier();
+  }
+
+  @Get('/atelier/delete')
+  supprimerAtelier() {
+    return this.appService.supprimerAtelier();
+  }
 }
