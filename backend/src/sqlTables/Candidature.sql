@@ -1,7 +1,8 @@
-CREATE TABLE Candidat
+CREATE TABLE Candidature
 (
-    idCandidat INT PRIMARY KEY,
-    idAtelier INT PRIMARY KEY,
+    idCandidat INT,
+    idAtelier INT,
     FOREIGN KEY (idCandidat) REFERENCES Candidat (id),
-    FOREIGN KEY (idAtelier) REFERENCES Atelier (id)
+    FOREIGN KEY (idAtelier) REFERENCES Atelier (id),
+    PRIMARY KEY (idCandidat, idAtelier)
 );
