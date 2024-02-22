@@ -1,5 +1,6 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import {Controller, Get, Param, Post} from '@nestjs/common';
 import { AppService } from './app.service';
+import {Atelier} from "./entities/atelier.entity";
 
 @Controller()
 export class AppController {
@@ -21,19 +22,19 @@ export class AppController {
     }
     return this.appService.listeCandidats();
   }
-  
+
   /**
    * Supprime un candidat de la liste des candidats en attente
-   * @returns 
+   * @returns
    */
   @Get('/candidat/delete')
-  supprimerCandidat() {
-    return this.appService.supprimerCandidat();
+  supprimerCandidat(@Param('id') id: number) {
+    return this.appService.supprimerCandidat(id);
   }
 
   /**
-   * Permet de repartir les candidats en attente dans les ateliers 
-   * @returns 
+   * Permet de repartir les candidats en attente dans les ateliers
+   * @returns
    */
   @Get('/candidat/repartition/repartir')
   repartirCandidats() {
@@ -43,7 +44,7 @@ export class AppController {
   /**
    * Permet d'annuler la repartition d'un candidat dans un atelier
    * le ramenne dans la liste des candidats en attente
-   * @returns 
+   * @returns
    */
   @Get('/candidat/repartition/annuler')
   annulerRepartition() {
@@ -72,8 +73,8 @@ export class AppController {
   }
 
   @Post('/atelier/create')
-  ajouterAtelier() {
-    return this.appService.ajouterAtelier();
+  ajouterAtelier(@Param('atelier') atelier: Atelier) {
+    return this.appService.ajouterAtelier(atelier);
   }
 
   // Liste les ateliers
@@ -83,12 +84,12 @@ export class AppController {
   }
 
   @Post('/atelier/update')
-  modifierAtelier() {
-    return this.appService.modifierAtelier();
+  modifierAtelier(@Param('id') id: number, @Param('atelier') atelier: Atelier) {
+    return this.appService.modifierAtelier(id, atelier);
   }
 
   @Get('/atelier/delete')
-  supprimerAtelier() {
-    return this.appService.supprimerAtelier();
+  supprimerAtelier(@Param('id') id: number) {
+    return this.appService.supprimerAtelier(id);
   }
 }
