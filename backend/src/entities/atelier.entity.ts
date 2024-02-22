@@ -19,6 +19,9 @@ export class Atelier {
   @Column()
   capacite: number;
 
+  @Column()
+  image: string;
+
   @OneToMany(() => Candidat, candidat => candidat.atelier)
   participants: Candidat[];
 }

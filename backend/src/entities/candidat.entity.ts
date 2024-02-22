@@ -9,6 +9,9 @@ export class Candidat {
 
   @Column()
   nom: string;
+  
+  @Column()
+  prenom: string;
 
   @Column()
   email: string;
