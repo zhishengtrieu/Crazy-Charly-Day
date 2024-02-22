@@ -11,7 +11,7 @@ import { Label } from './entities/label.entity';
     TypeOrmModule.forRoot({
       type: 'mariadb',
       host: 'localhost', 
-      port: 3306,
+      port: 3307,
       username: 'crazy', 
       password: 'crazy', 
       database: 'db_crazy', 

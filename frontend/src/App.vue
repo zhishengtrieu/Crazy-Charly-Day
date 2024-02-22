@@ -3,7 +3,7 @@
 
 <template>
   <header>
-    <img alt="Vue logo" src="./assets/logo_boite_a_cuisine.png" id="logo">
+    <RouterLink to="/" id="logo"><img alt="Vue logo" src="./assets/logo_boite_a_cuisine.png"/></RouterLink>
     <nav>
       <RouterLink to="/">Accueil</RouterLink>
       <RouterLink to="/ateliers">Ateliers</RouterLink>
@@ -11,7 +11,7 @@
     </nav>
   </header>
 
-  <main>
+  <main class="container py-3">
     <RouterView/>
   </main>
 
@@ -39,9 +39,13 @@ header {
 /* Logo */
 #logo {
   position: absolute;
-  left: 10px;
+  left: 0;
+  padding: 0 1em;
   height: inherit;
-  margin-right: 2em;
+
+  img {
+    height: inherit;
+  }
 }
 
 /* Navigation */
@@ -56,15 +60,10 @@ nav a {
   color: black;
   font-weight: bold;
   font-size: 1.3em;
+
   &:hover {
     color: #A53480;
   }
-}
-
-/* Main Content */
-main {
-  padding: 20px;
-  color: white;
 }
 
 footer {
@@ -72,7 +71,7 @@ footer {
   align-items: center;
   justify-content: center;
   line-height: 1.5;
-  height: 150px;
+  height: 80px;
   background-color: white;
   box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.26);
 }
